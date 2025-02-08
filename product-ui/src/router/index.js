@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ProductListView from '../views/ProductListView.vue'
 import ProductDetailView from '../views/ProductDetailView.vue'
+import SearchView from '../views/SearchView.vue'
 
 Vue.use(VueRouter)
 
@@ -29,6 +30,11 @@ const routes = [
     path: '/product/:id',
     name: 'productDetail',
     component: ProductDetailView
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: SearchView
   }
 ]
 
