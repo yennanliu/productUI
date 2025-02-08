@@ -1,19 +1,25 @@
 <template>
   <div class="product-detail">
     <div class="product-card" v-if="product">
-      <h1>{{ product.name }}</h1>
-      <p class="price">${{ product.price }}</p>
-      <div class="features-section">
-        <h2>Features</h2>
-        <ul class="features">
-          <li v-for="(feature, index) in product.features" :key="index">
-            {{ feature }}
-          </li>
-        </ul>
+      <div class="product-image">
+        <img v-if="product.image" :src="require(`@/assets/data/${product.image}`)" :alt="product.name">
+        <div v-else class="no-image">No image available</div>
       </div>
-      <button class="back-button" @click="$router.push('/productList')">
-        Back to Products
-      </button>
+      <div class="product-info">
+        <h1>{{ product.name }}</h1>
+        <p class="price">${{ product.price }}</p>
+        <div class="features-section">
+          <h2>Features</h2>
+          <ul class="features">
+            <li v-for="(feature, index) in product.features" :key="index">
+              {{ feature }}
+            </li>
+          </ul>
+        </div>
+        <button class="back-button" @click="$router.push('/productList')">
+          Back to Products
+        </button>
+      </div>
     </div>
     <div v-else class="not-found">
       Product not found
@@ -41,7 +47,7 @@ export default {
 <style scoped>
 .product-detail {
   padding: 20px;
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
@@ -51,6 +57,27 @@ export default {
   padding: 30px;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.product-image {
+  width: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.product-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
 }
 
 .price {
@@ -83,6 +110,7 @@ export default {
   border-radius: 4px;
   cursor: pointer;
   font-size: 1.1em;
+  margin-top: auto;
 }
 
 .back-button:hover {
@@ -103,5 +131,21 @@ h1 {
 
 h2 {
   color: #2c3e50;
+}
+
+@media (max-width: 768px) {
+  .product-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+.no-image {
+  background-color: #f5f5f5;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-style: italic;
 }
 </style> 
