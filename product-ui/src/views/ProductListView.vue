@@ -2,7 +2,7 @@
   <div class="product-list">
     <h1>Our Products</h1>
     <div class="products-grid">
-      <div v-for="product in products" :key="product.id" class="product-card">
+      <div v-for="product in products" :key="product.id" class="product-card" @click="goToDetail(product.id)">
         <h2>{{ product.name }}</h2>
         <p class="price">${{ product.price }}</p>
         <ul class="features">
@@ -23,6 +23,11 @@ export default {
   data: function() {
     return {
       products: productData.products
+    }
+  },
+  methods: {
+    goToDetail(id) {
+      this.$router.push(`/product/${id}`)
     }
   }
 }
@@ -46,6 +51,13 @@ export default {
   padding: 20px;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .price {
