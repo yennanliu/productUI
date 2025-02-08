@@ -80,12 +80,30 @@ export default {
   name: 'App',
   data() {
     return {
-      isSidebarOpen: true
+      isSidebarOpen: window.innerWidth > 1024, // Default open on larger screens
+      isMobile: window.innerWidth <= 768
     }
+  },
+  mounted() {
+    // Add window resize listener
+    window.addEventListener('resize', this.handleResize)
+    this.handleResize() // Initial check
+  },
+  beforeDestroy() {
+    // Clean up
+    window.removeEventListener('resize', this.handleResize)
   },
   methods: {
     toggleSidebar() {
       this.isSidebarOpen = !this.isSidebarOpen
+    },
+    handleResize() {
+      this.isMobile = window.innerWidth <= 768
+      if (window.innerWidth <= 1024) {
+        this.isSidebarOpen = false
+      } else {
+        this.isSidebarOpen = true
+      }
     }
   }
 }
