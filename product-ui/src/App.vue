@@ -4,7 +4,9 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
       <router-link to="/productList">Products</router-link> |
-      <router-link to="/search">Search</router-link>
+      <router-link to="/search">Search</router-link> |
+      <router-link to="/compare">Compare</router-link> |
+      <router-link to="/faq">FAQ</router-link>
     </nav>
     <router-view/>
   </div>
