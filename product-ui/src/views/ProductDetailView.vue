@@ -16,9 +16,14 @@
             </li>
           </ul>
         </div>
-        <button class="back-button" @click="$router.push('/productList')">
-          Back to Products
-        </button>
+        <div class="button-group">
+          <button class="buy-now-button" @click="goToAmazon">
+            Buy Now on Amazon
+          </button>
+          <button class="back-button" @click="$router.push('/productList')">
+            Back to Products
+          </button>
+        </div>
       </div>
     </div>
     <div v-else class="not-found">
@@ -34,12 +39,18 @@ export default {
   name: 'ProductDetailView',
   data: function() {
     return {
-      product: null
+      product: null,
+      amazonUrl: 'https://www.amazon.com/stores/page/F3691F18-FD51-4154-843D-C8DC8BB9598A?channel=amazonVehicleShowroom'
     }
   },
   created() {
     const productId = parseInt(this.$route.params.id)
     this.product = productData.products.find(p => p.id === productId)
+  },
+  methods: {
+    goToAmazon() {
+      window.open(this.amazonUrl, '_blank')
+    }
   }
 }
 </script>
@@ -102,6 +113,27 @@ export default {
   font-size: 1.1em;
 }
 
+.button-group {
+  display: flex;
+  gap: 15px;
+  margin-top: auto;
+}
+
+.buy-now-button {
+  background-color: #ff9900; /* Amazon's orange color */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.1em;
+  flex: 1;
+}
+
+.buy-now-button:hover {
+  background-color: #ff8400;
+}
+
 .back-button {
   background-color: #42b883;
   color: white;
@@ -110,7 +142,7 @@ export default {
   border-radius: 4px;
   cursor: pointer;
   font-size: 1.1em;
-  margin-top: auto;
+  flex: 1;
 }
 
 .back-button:hover {
