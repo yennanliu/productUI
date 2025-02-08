@@ -16,30 +16,13 @@
 </template>
 
 <script>
+import productData from '@/assets/data/products.json'
+
 export default {
   name: 'ProductListView',
   data: function() {
     return {
-      products: [
-        {
-          id: 1,
-          name: 'Premium Widget',
-          price: 99.99,
-          features: ['Durable', 'Eco-friendly', 'Easy to use']
-        },
-        {
-          id: 2,
-          name: 'Super Gadget',
-          price: 149.99,
-          features: ['Wireless', 'Long battery life', 'Compact design']
-        },
-        {
-          id: 3,
-          name: 'Mega Tool',
-          price: 79.99,
-          features: ['Versatile', 'Lightweight', 'Professional grade']
-        }
-      ]
+      products: productData.products
     }
   }
 }
