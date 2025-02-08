@@ -2,7 +2,10 @@
   <div class="product-list">
     <h1>Our Products</h1>
     <div class="products-grid">
-      <div v-for="product in products" :key="product.id" class="product-card" @click="goToDetail(product.id)">
+      <div v-for="product in paginatedProducts" 
+           :key="product.id" 
+           class="product-card"
+           @click="goToDetail(product.id)">
         <h2>{{ product.name }}</h2>
         <p class="price">${{ product.price }}</p>
         <ul class="features">
@@ -11,6 +14,26 @@
           </li>
         </ul>
       </div>
+    </div>
+
+    <div class="pagination">
+      <button 
+        :disabled="currentPage === 1" 
+        @click="currentPage--"
+        class="page-button"
+      >
+        Previous
+      </button>
+      <span class="page-info">
+        Page {{ currentPage }} of {{ totalPages }}
+      </span>
+      <button 
+        :disabled="currentPage === totalPages" 
+        @click="currentPage++"
+        class="page-button"
+      >
+        Next
+      </button>
     </div>
   </div>
 </template>
@@ -22,7 +45,19 @@ export default {
   name: 'ProductListView',
   data: function() {
     return {
-      products: productData.products
+      products: productData.products,
+      currentPage: 1,
+      itemsPerPage: 6
+    }
+  },
+  computed: {
+    totalPages() {
+      return Math.ceil(this.products.length / this.itemsPerPage)
+    },
+    paginatedProducts() {
+      const start = (this.currentPage - 1) * this.itemsPerPage
+      const end = start + this.itemsPerPage
+      return this.products.slice(start, end)
     }
   },
   methods: {
@@ -43,6 +78,7 @@ export default {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
   margin-top: 20px;
+  margin-bottom: 30px;
 }
 
 .product-card {
@@ -58,6 +94,39 @@ export default {
 .product-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 30px;
+  padding: 20px;
+}
+
+.page-button {
+  background-color: #42b883;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.page-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.page-button:hover:not(:disabled) {
+  background-color: #3aa876;
+}
+
+.page-info {
+  color: #666;
+  font-size: 1.1em;
 }
 
 .price {
