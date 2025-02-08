@@ -13,6 +13,7 @@
           <router-link to="/compare">Compare</router-link>
           <router-link to="/about">About</router-link>
           <router-link to="/faq">FAQ</router-link>
+          <router-link to="/admin">Admin</router-link>
         </nav>
       </div>
     </header>

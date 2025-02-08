@@ -6,6 +6,7 @@ import ProductDetailView from '../views/ProductDetailView.vue'
 import SearchView from '../views/SearchView.vue'
 import CompareView from '../views/CompareView.vue'
 import FAQView from '../views/FAQView.vue'
+import AdminView from '../views/AdminView.vue'
 
 Vue.use(VueRouter)
 
@@ -47,6 +48,11 @@ const routes = [
     path: '/faq',
     name: 'faq',
     component: FAQView
+  },
+  {
+    path: '/admin',
+    name: 'admin',
+    component: AdminView
   }
 ]
 
