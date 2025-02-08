@@ -1,0 +1,67 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Premium Widget",
+      "price": 99.99,
+      "image": "product1.jpg",
+      "features": ["Durable", "Eco-friendly", "Easy to use"]
+    },
+    {
+      "id": 2,
+      "name": "Super Gadget",
+      "price": 149.99,
+      "image": "product2.jpg",
+      "features": ["Wireless", "Long battery life", "Compact design"]
+    },
+    {
+      "id": 3,
+      "name": "Mega Tool",
+      "price": 79.99,
+      "image": "product3.jpg",
+      "features": ["Versatile", "Lightweight", "Professional grade"]
+    },
+    {
+      "id": 4,
+      "name": "Smart Device",
+      "price": 199.99,
+      "image": "product1.jpg",
+      "features": ["AI-powered", "Voice control", "Smart home compatible"]
+    },
+    {
+      "id": 5,
+      "name": "Pro Camera",
+      "price": 299.99,
+      "image": "product2.jpg",
+      "features": ["4K video", "Night mode", "Water resistant"]
+    },
+    {
+      "id": 6,
+      "name": "Gaming Console",
+      "price": 399.99,
+      "image": "product3.jpg",
+      "features": ["4K gaming", "1TB storage", "Online multiplayer"]
+    },
+    {
+      "id": 7,
+      "name": "Fitness Tracker",
+      "price": 89.99,
+      "image": "product1.jpg",
+      "features": ["Heart rate monitor", "Sleep tracking", "Water proof"]
+    },
+    {
+      "id": 8,
+      "name": "Wireless Earbuds",
+      "price": 129.99,
+      "image": "product2.jpg",
+      "features": ["Active noise cancelling", "30hr battery", "Touch controls"]
+    },
+    {
+      "id": 9,
+      "name": "Smart Watch",
+      "price": 249.99,
+      "image": "product3.jpg",
+      "features": ["Health monitoring", "GPS", "Message notifications"]
+    }
+  ]
+} 
