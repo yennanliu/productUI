@@ -1,0 +1,80 @@
+service: product-api
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  region: us-east-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:GetObject
+        - s3:PutObject
+        - s3:ListBucket
+        - s3:DeleteObject
+      Resource: 
+        - "arn:aws:s3:::${self:custom.productsBucket}/*"
+        - "arn:aws:s3:::${self:custom.productsBucket}"
+
+custom:
+  productsBucket: product-data-${self:provider.stage}
+
+functions:
+  getProducts:
+    handler: functions/getProducts.handler
+    events:
+      - http:
+          path: products
+          method: get
+          cors: true
+  
+  getProduct:
+    handler: functions/getProduct.handler
+    events:
+      - http:
+          path: products/{id}
+          method: get
+          cors: true
+  
+  createProduct:
+    handler: functions/createProduct.handler
+    events:
+      - http:
+          path: products
+          method: post
+          cors: true
+  
+  updateProduct:
+    handler: functions/updateProduct.handler
+    events:
+      - http:
+          path: products/{id}
+          method: put
+          cors: true
+  
+  deleteProduct:
+    handler: functions/deleteProduct.handler
+    events:
+      - http:
+          path: products/{id}
+          method: delete
+          cors: true
+
+resources:
+  Resources:
+    ProductsBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:custom.productsBucket}
+        CorsConfiguration:
+          CorsRules:
+            - AllowedHeaders:
+                - '*'
+              AllowedMethods:
+                - GET
+                - PUT
+                - POST
+                - DELETE
+              AllowedOrigins:
+                - '*' 
